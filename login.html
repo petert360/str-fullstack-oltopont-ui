@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-light bg-light p-3">
+        <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
+            <a class="navbar-brand" href="#">
+                Oltópont
+            </a>
+            <button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-toggle="collapse"
+                data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="col-12 col-md-4 col-lg-2">
+            <input class="form-control form-control-dark" type="text" placeholder="Keresés..." aria-label="Search">
+        </div>
+        <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-expanded="false">
+                    Felhasználó
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#">Beállítások</a></li>
+                    <li><a class="dropdown-item" href="#">Üzenetek</a></li>
+                    <li><a class="dropdown-item" href="#">Kilépés</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- SIDEBAR -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 text-center">
+                <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" class="form-signin mt-5">
+                    <h1 class="h3 mb-3 font-weight-normal">Oltópont belépés</h1>
+                    <p *ngIf="emailField.invalid && emailField.touched" class="error-message">Kérem, adjon meg egy valós
+                        e-mail címet.</p>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input type="email" name="email" [(ngModel)]="user.email" #emailField="ngModel" email
+                        id="inputEmail" class="form-control" placeholder="Email cím" required autofocus>
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" id="inputPassword" name="password" [(ngModel)]="user.password" #passwordField
+                        class="form-control" placeholder="Jelszó" required>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        [disabled]="loginForm.invalid">Belépés</button>
+
+                    <div *ngIf="serverError && loginForm.submitted" class="alert alert-danger mt-3">
+                        {{ serverError }}
+                    </div>
+
+                    <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
